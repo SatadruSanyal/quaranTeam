@@ -50,12 +50,12 @@ class InterestsState extends State<Interests> {
           tiles: tiles,
         ).toList();
 
-        return Scaffold(         // Add 6 lines from here...
+        return Scaffold(
           appBar: AppBar(
             title: Text('Your Saved Interests'),
           ),
           body: ListView(children: divided),
-        );                       // ... to here.
+        );
       },
     ));
   }
@@ -135,6 +135,16 @@ class InterestsState extends State<Interests> {
   }
 
   void _homePage() {
+    Navigator.of(context).push(MaterialPageRoute<void>(
+      builder: (BuildContext context) {
+        return Scaffold(
+          appBar: AppBar(
+            title: Text('HomePage'),
+          ),
+          body: null, //TODO: ENTER HOMEPAGE CODE HERE
+        );
+      },
+    ));
   }
 }
 
