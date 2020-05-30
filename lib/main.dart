@@ -39,7 +39,7 @@ class InterestsState extends State<Interests> {
           (Text word) {
             return ListTile(
               title: Text(
-                word.toString(),
+                word.data,
                 style: _biggerFont,
               ),
             );
@@ -93,7 +93,7 @@ class InterestsState extends State<Interests> {
     final bool already_saved = _saved.contains(word);
     return ListTile(
       title: Text(
-        word.toString(),
+        word.data,
         style: _biggerFont,
       ),
       trailing: Icon(
