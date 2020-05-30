@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
 
 class InterestsState extends State<Interests> {
   final _suggestions = <Text>[];
-  final _biggerFont = const TextStyle(fontSize: 18.0);
+  final _biggerFont = const TextStyle(fontSize: 15.0);
   final Set<Text> _saved = Set<Text>();
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class InterestsState extends State<Interests> {
           IconButton(icon: Icon(Icons.list), onPressed: _pushSaved),
         ],
       ),
-      body: _buildSuggestions(),
+      body: _startColumn(),
     );
   }
 
@@ -59,7 +59,22 @@ class InterestsState extends State<Interests> {
       },
     ));
   }
-  
+  Widget _startColumn() {
+    return Column(
+      children: <Widget>[
+        Text('Welcome! Please Choose Your Interests', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+        Expanded(
+            child: _buildSuggestions()
+        ),
+        IconButton(
+          icon: Icon(Icons.check_circle, color: Colors.green,),
+          iconSize: 40.0,
+          onPressed: _homePage
+        )
+      ],
+    );
+  }
+
   Widget _buildSuggestions() {
     return ListView.builder(
       padding: const EdgeInsets.all(16.0),
@@ -117,6 +132,9 @@ class InterestsState extends State<Interests> {
     _suggestions.add(Text('Painting'));
     _suggestions.add(Text('Video Games'));
     _suggestions.add(Text('Religion'));
+  }
+
+  void _homePage() {
   }
 }
 
