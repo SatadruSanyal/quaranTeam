@@ -140,6 +140,9 @@ class InterestsState extends State<Interests> {
         return Scaffold(
           appBar: AppBar(
             title: Text('HomePage'),
+            actions: <Widget>[
+              IconButton(icon: Icon(Icons.list), onPressed: _pushSaved),
+            ],
           ),
           body: null, //TODO: ENTER HOMEPAGE CODE HERE
         );
