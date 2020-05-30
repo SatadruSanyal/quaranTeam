@@ -1,10 +1,9 @@
-# flutter_app
+# QuaranTeam
 
-A new Flutter application.
+An application to bring people together in this time of crisis, by matching them by interests, location and preexisting friendships and contacts.
+Currently in the development phase
 
 ## Getting Started
-
-This project is a starting point for a Flutter application.
 
 A few resources to get you started if this is your first Flutter project:
 
