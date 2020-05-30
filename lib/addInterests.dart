@@ -15,23 +15,15 @@ final List<Text> health = [Text('Running'), Text('Yoga'), Text('Pilates'), Text(
 final List<Text> arts = [Text('Fine art'), Text('Contemporary'), Text('Art Nouveau'), Text('Pop art'), Text('Minimalism Art')];
 final List<Text> tech = [Text('Phones'), Text('PC Building'), Text('Gaming'), Text('Crypto'), Text('DIYs')];
 
+final List<Text> categories = [Text('Sports'), Text('Entertainment'), Text('Health and fitness'), Text('Arts'), Text('Technology')];
+final List<Icon> categoryIcons = [Icon(Icons.directions_bike), Icon(Icons.local_activity), Icon(Icons.directions_run), Icon(Icons.palette), Icon(Icons.computer)];
+
 class Categories extends StatefulWidget {
   @override
   CategoriesState createState() => CategoriesState();
 }
 
 class CategoriesState extends State<Categories>{
-  final _categories = <Text>[];
-
-  void _addCategories() {
-    /* Hardcoded suggestions can be added here. Remember to update
-     * the global int numOfCategories if you change this*/
-    _categories.add(Text('Sports'));
-    _categories.add(Text('Entertainment'));
-    _categories.add(Text('Health and fitness'));
-    _categories.add(Text('Arts'));
-    _categories.add(Text('Technology'));
-  }
 
   void _pushSaved() {
     Navigator.of(context).push(MaterialPageRoute<void>(
@@ -39,7 +31,6 @@ class CategoriesState extends State<Categories>{
   }
 
   Widget build(BuildContext context) {
-    _addCategories();
     return Scaffold(
       appBar: AppBar(
         title: Text('Select a category'),
@@ -72,7 +63,7 @@ class CategoriesState extends State<Categories>{
         padding: const EdgeInsets.all(16.0),
         itemBuilder: (context, i) {
           if (i < numOfCategories) {
-            return _buildRow(_categories[i]);
+            return _buildRow(categories[i], categoryIcons[i]);
           }
           return null;
         }
@@ -80,12 +71,13 @@ class CategoriesState extends State<Categories>{
     );
   }
 
-  Widget _buildRow(Text word) {
+  Widget _buildRow(Text word, Icon icon) {
     return ListTile(
       title: Text(
         word.data,
         style: standardFont,
       ),
+      trailing: icon,
       onTap: () {
         //Find which category was tapped
         categoryFocus = word.data;

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:english_words/english_words.dart';
 import 'addInterests.dart';
-String categoryFocus = "";
+import 'journal.dart';
+
+
+int score = 0; //TODO: HARDOCDED SCORE - CHANGE
 
 void main() => runApp(MyApp());
 
@@ -42,11 +44,16 @@ class HomePage extends StatelessWidget {
     ));
   }
 
+  void _goToJournal() {
+    Navigator.of(thisContext).push(MaterialPageRoute<void>(
+        builder: (BuildContext context) {
+      return Journal();
+    }));
+  }
+
 
 
   Widget _homePageBody() {
-    int score = 5; //TODO: HARDOCDED SCORE - CHANGE
-
     return Column(
       children: <Widget>[
         Text('My Score:' + score.toString(), style: headerFont,),
@@ -59,7 +66,7 @@ class HomePage extends StatelessWidget {
         ),
         Center(
             child: MaterialButton(
-                onPressed: null,
+                onPressed: _goToJournal,
                 disabledColor: Colors.grey,
                 color: Colors.blueAccent,
                 textColor: Colors.white,
