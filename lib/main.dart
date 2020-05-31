@@ -3,6 +3,7 @@ import 'addInterests.dart';
 import 'journal.dart';
 import 'viewProfile.dart';
 import 'viewEvents.dart';
+import 'calendar.dart';
 import 'package:fl_chart/fl_chart.dart';
 
 
@@ -26,7 +27,14 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class HomePage extends StatelessWidget {
+
+class HomePage extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => HomePageState();
+
+}
+
+class HomePageState extends State<HomePage> {
   BuildContext thisContext;
   int _selectedIndex = 0;
   @override
@@ -55,7 +63,11 @@ class HomePage extends StatelessWidget {
           BottomNavigationBarItem(
               icon: Icon(Icons.account_circle),
               title: Text('Profile'),
-          )
+          ),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.calendar_today),
+              title: Text('Calendar')
+          ),
         ],
         currentIndex: 0,
         selectedItemColor: Colors.blueAccent,
@@ -68,10 +80,6 @@ class HomePage extends StatelessWidget {
     );
 
   }
-
-
-
-
 
   Widget _homePageBody() {
     return Column(
@@ -88,11 +96,6 @@ class HomePage extends StatelessWidget {
   }
 
 
-
-
-
-
-
   void _onItemTapped(int index) {
     if (index == 0) {
       return;
@@ -105,9 +108,11 @@ class HomePage extends StatelessWidget {
     } else if (index == 3) {
       _goToProfile();
       return;
-    } else {
+    } else if (index == 4) {
+      _goToCalendar();
       return;
     }
+    return;
   }
 
   void _goToCategories(){
@@ -129,6 +134,13 @@ class HomePage extends StatelessWidget {
     Navigator.of(thisContext).push(MaterialPageRoute<void>(
         builder: (BuildContext context) {
           return viewProfile();
+        }));
+  }
+
+  void _goToCalendar() {
+    Navigator.of(thisContext).push(MaterialPageRoute<void>(
+        builder: (BuildContext context) {
+          return Calendar();
         }));
   }
 }

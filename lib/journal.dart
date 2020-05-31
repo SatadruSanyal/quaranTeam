@@ -3,9 +3,11 @@ import 'newJournalEntry.dart';
 
 final TextStyle standardFont = TextStyle(fontSize: 18);
 List<Widget> entries = [];
+int num_of_entries = 0;
 
 class Journal extends StatelessWidget {
   BuildContext thisContext;
+  int entriesNumber = num_of_entries;
 
   @override
   Widget build(BuildContext context) {
