@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'addInterests.dart';
 import 'journal.dart';
 import 'viewProfile.dart';
+import 'viewEvents.dart';
+import 'package:fl_chart/fl_chart.dart';
+
 
 
 int score = 0; //TODO: HARDOCDED SCORE - CHANGE
@@ -42,7 +45,7 @@ class HomePage extends StatelessWidget {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.library_books),
-            title: Text('Journal')
+            title: Text('Journal'),
           ),
 
           BottomNavigationBarItem(
@@ -51,15 +54,19 @@ class HomePage extends StatelessWidget {
           ),
           BottomNavigationBarItem(
               icon: Icon(Icons.account_circle),
-              title: Text('Profile')
+              title: Text('Profile'),
           )
         ],
         currentIndex: 0,
         selectedItemColor: Colors.blueAccent,
         unselectedItemColor: Colors.grey,
         onTap: _onItemTapped,
+        //To always show labels
+        showSelectedLabels: true,
+        showUnselectedLabels: true,
       ),
     );
+
   }
 
 
@@ -70,24 +77,18 @@ class HomePage extends StatelessWidget {
     return Column(
       children: <Widget>[
         Text('My Score:' + score.toString(), style: headerFont,),
-        Center(
-            child: MaterialButton(
-                onPressed: _goToCategories,
-                color: Colors.blueAccent,
-                textColor: Colors.white,
-                child: Text('Add Interests', style: standardFont,)),
-        ),
-        Center(
-            child: MaterialButton(
-                onPressed: _goToJournal,
-                disabledColor: Colors.grey,
-                color: Colors.blueAccent,
-                textColor: Colors.white,
-                child: Text('My Journal', style: standardFont,)),
-        ),
+        Text('Breakdown of activities this week', style: headerFont,),
+        //TODO: Add pie chart and add to home page!!!
+
+
+
+
       ],
     );
   }
+
+
+
 
 
 
@@ -98,11 +99,13 @@ class HomePage extends StatelessWidget {
     } else if (index == 1) {
       _goToJournal();
       return;
+    } else if (index == 2) {
+      _goToCategories();
+      return;
     } else if (index == 3) {
       _goToProfile();
       return;
     } else {
-      _goToCategories();
       return;
     }
   }
@@ -123,7 +126,6 @@ class HomePage extends StatelessWidget {
   }
 
   void _goToProfile() {
-    //TODO: ADD NAVIGATION TO PROFILE
     Navigator.of(thisContext).push(MaterialPageRoute<void>(
         builder: (BuildContext context) {
           return viewProfile();
