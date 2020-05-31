@@ -80,13 +80,13 @@ class JournalEntry extends StatelessWidget {
             ),
             Row(
               children: <Widget>[
-                Text('Event Description:', style: standardFont),
+                Text('Today I:', style: standardFont),
                 Expanded(
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextField(
                     decoration: InputDecoration(
-                        hintText: 'Describe the event'
+                        hintText: 'Describe the event (10pts)'
                     ),
                     maxLines: null,
                     onChanged: _updateDescription,
@@ -140,27 +140,46 @@ class JournalEntry extends StatelessWidget {
   }
 
   Widget _buildEntry() {
-    return new Entry(eventName, description, category);
+    return new Entry(eventName, description, category, thisContext);
   }
 
 }
 
-class Entry extends ListTile {
+class Entry extends StatelessWidget {
 
   String name;
   String description;
   String category;
+  BuildContext thisContext;
 
-
-  Entry(this.name, this.description, this.category);
+  Entry(this.name, this.description, this.category, this.thisContext);
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(name),
-      subtitle: Text(category),
-      onTap: null //TODO: ADD ONTAP VIEW AND EDIT ENTRY
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('View Entry'),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.mode_edit),
+            onPressed: _goToEditEvent,
+          )
+        ],
+      ),
+      body: Column(
+        children: <Widget>[
+          Text('Category: ' + category, style: TextStyle(fontSize: 18, color: Colors.grey), textAlign: TextAlign.center,),
+          Text('Today I ' + description, style: standardFont,)
+        ],
+
+      ),
     );
   }
+
+  void _goToEditEvent() {
+
+  }
+
+
 
 }

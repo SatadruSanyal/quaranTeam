@@ -50,9 +50,10 @@ class JournalState extends State<Journal> {
   Widget _buildJournalBody() {
     return Column(
       children: <Widget>[
-        Center(
-        child: Text('Add More Journal Entries for More Points!', style: standardFont),
+        SizedBox(
+        height: 20,
     ),
+        Text('Add More Journal Entries for More Points!', style: headerFont, textAlign: TextAlign.center,),
         Expanded(
           child: _buildEntries()
         )
@@ -64,15 +65,22 @@ class JournalState extends State<Journal> {
     return ListView.builder(
         padding: const EdgeInsets.all(16.0),
         itemBuilder: (context, i) {
-          if (i < num_of_entries) {
-            return _buildRow(entries[i]);
+          if (i.isEven) {
+            final int index = i~/2;
+            if (index < num_of_entries) {
+              return _buildRow(entries[index]);
+            } else {
+              return null;
+            }
           } else {
-            return null;
+            return Divider();
           }
+
         }
 
     );
   }
+
 
   Widget _buildRow(Entry e) {
     return ListTile(
@@ -80,7 +88,8 @@ class JournalState extends State<Journal> {
         e.name,
         style: standardFont,
       ),
-      subtitle: Text(e.category)
+      subtitle: Text(e.category),
+      onTap: null //TODO: ADD VIEW ENTRY FEATURE,
     );
   }
 }

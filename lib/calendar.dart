@@ -10,7 +10,9 @@ class Calendar extends StatelessWidget {
       appBar: AppBar(
         title: Text('Calendar'),
       ),
-      body: null,
+      body: Center(
+        child: Text('Coming Soon!', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
+      ),
       bottomNavigationBar: bottomNavBar(4),
     );
   }
