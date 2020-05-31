@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'addInterests.dart';
 import 'journal.dart';
+import 'viewProfile.dart';
 
 
 int score = 0; //TODO: HARDOCDED SCORE - CHANGE
@@ -36,20 +37,21 @@ class HomePage extends StatelessWidget {
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          title: Text('Home'),
-      ),
+              icon: Icon(Icons.home),
+              title: Text('Home'),
+          ),
           BottomNavigationBarItem(
             icon: Icon(Icons.library_books),
             title: Text('Journal')
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle),
-            title: Text('Profile')
-          ),
+
           BottomNavigationBarItem(
             icon: Icon(Icons.category),
             title: Text('Interests')
+          ),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.account_circle),
+              title: Text('Profile')
           )
         ],
         currentIndex: 0,
@@ -60,24 +62,7 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  void _goToCategories(){
-    Navigator.of(thisContext).push(MaterialPageRoute<void>(
-        builder: (BuildContext context) {
-          return Categories();
-        }
-    ));
-  }
 
-  void _goToJournal() {
-    Navigator.of(thisContext).push(MaterialPageRoute<void>(
-        builder: (BuildContext context) {
-      return Journal();
-    }));
-  }
-
-  void _goToProfile() {
-    //TODO: ADD NAVIGATION TO PROFILE
-  }
 
 
 
@@ -113,7 +98,7 @@ class HomePage extends StatelessWidget {
     } else if (index == 1) {
       _goToJournal();
       return;
-    } else if (index ==1) {
+    } else if (index == 3) {
       _goToProfile();
       return;
     } else {
@@ -122,4 +107,26 @@ class HomePage extends StatelessWidget {
     }
   }
 
+  void _goToCategories(){
+    Navigator.of(thisContext).push(MaterialPageRoute<void>(
+        builder: (BuildContext context) {
+          return Categories();
+        }
+    ));
+  }
+
+  void _goToJournal() {
+    Navigator.of(thisContext).push(MaterialPageRoute<void>(
+        builder: (BuildContext context) {
+          return Journal();
+        }));
+  }
+
+  void _goToProfile() {
+    //TODO: ADD NAVIGATION TO PROFILE
+    Navigator.of(thisContext).push(MaterialPageRoute<void>(
+        builder: (BuildContext context) {
+          return viewProfile();
+        }));
+  }
 }
