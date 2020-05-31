@@ -140,17 +140,23 @@ class viewProfile extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Text(
-                    'Find Friends                                                           ',
-                    textAlign: TextAlign.left,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle( fontWeight: FontWeight.bold,
-                      fontSize: 25.0,),
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Text(
+                      'Find Friends                                                           ',
+                      textAlign: TextAlign.left,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle( fontWeight: FontWeight.bold,
+                        fontSize: 25.0,),
 
+                    ),
                   ),
 
-                  Text('''Find friends to do activities with, take part in events with and socialise with! Doing activities with friends bring you more points as well as writing in your journal.''',
-                    maxLines: 20, style: TextStyle(fontSize: 12.0 ,fontWeight:FontWeight.bold,color: Colors.black) , )
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Text('''Find friends to do activities with, take part in events with and socialise with! Doing activities with friends bring you more points as well as writing in your journal.''',
+                      maxLines: 20, style: TextStyle(fontSize: 12.0 ,fontWeight:FontWeight.bold,color: Colors.black) , ),
+                  )
                   //      ),
 
                 ],
@@ -165,18 +171,21 @@ class viewProfile extends StatelessWidget {
               child:
                 new Container(
 
-                  child: new Text (
-                      "Sign-in to your social media accounts",
-                      style: new TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w900,
-                          fontSize: 20,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: new Text (
+                        "Sign-in to your social media accounts",
+                        style: new TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w900,
+                            fontSize: 20,
 
-                      )
+                        )
+                    ),
                   ),
                   decoration: new BoxDecoration (
                       borderRadius: new BorderRadius.all(new Radius.circular(99.0)),
-                      color: Colors.grey[300]
+                      color: Colors.blueAccent
                   ),
                   padding: new EdgeInsets.all(16.0),
                 ),
