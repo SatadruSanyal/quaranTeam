@@ -3,7 +3,7 @@ import 'addInterests.dart';
 import 'journal.dart';
 import 'viewProfile.dart';
 import 'calendar.dart';
-
+import 'bottomNavigationBar.dart';
 
 
 int score = 0; //TODO: HARDCODED SCORE - CHANGE
@@ -48,38 +48,7 @@ class HomePageState extends State<HomePage> {
         title: Text('Welcome to QuaranTeam!'),
       ),
       body: _homePageBody(),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              title: Text('Home'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.library_books),
-            title: Text('Journal'),
-          ),
-
-          BottomNavigationBarItem(
-            icon: Icon(Icons.category),
-            title: Text('Interests')
-          ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.account_circle),
-              title: Text('Profile'),
-          ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.calendar_today),
-              title: Text('Calendar')
-          ),
-        ],
-        currentIndex: 0,
-        selectedItemColor: Colors.blueAccent,
-        unselectedItemColor: Colors.grey,
-        onTap: _onItemTapped,
-        //To always show labels
-        showSelectedLabels: true,
-        showUnselectedLabels: true,
-      ),
+      bottomNavigationBar: bottomNavBar(0),
     );
 
   }
@@ -251,84 +220,84 @@ class HomePageState extends State<HomePage> {
 
         ),
 
-        Container(
-          //height: 40, // give it a fixed height constraint
-          //margin: const EdgeInsets.only(top: 30.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Text('Socialise', style: headerFont,),
+//        Container(
+//          //height: 40, // give it a fixed height constraint
+//          //margin: const EdgeInsets.only(top: 30.0),
+//          child: Column(
+//            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//            children: [
+//              Text('Socialise', style: headerFont,),
+//
+//              Text('''Explore what your friends are doing soon and jump on with them!''',
+//                maxLines: 20, style: TextStyle(fontSize: 12.0 ,fontWeight:FontWeight.bold,color: Colors.black) , )
+//            ],
+//          ),
+//        ),
 
-              Text('''Explore what your friends are doing soon and jump on with them!''',
-                maxLines: 20, style: TextStyle(fontSize: 12.0 ,fontWeight:FontWeight.bold,color: Colors.black) , )
-            ],
-          ),
-        ),
+//        Container(
+//          height: 40, // give it a fixed height constraint
+//          child:
+//          Row(
+//            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//            children: [
+//
+//              const Image(
+//                image: NetworkImage('https://www.gstatic.com/tv/thumb/persons/1156788/1156788_v9_aa.jpg'),
+//                width: 110,
+//                height: 110,
+//                fit: BoxFit.scaleDown,
+//              ),
+//              const Image(
+//                image: NetworkImage('https://i.guim.co.uk/img/media/0dae2063eda63e5da1810895aff69e1ef600d0fb/0_598_4912_2946/master/4912.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=3f1a4b410e90e91203bb625f3d53efed'),
+//                width: 100,
+//                height: 100,
+//                fit: BoxFit.scaleDown,
+//              ),
+//              const Image(
+//                image: NetworkImage('https://pyxis.nymag.com/v1/imgs/cd5/155/ebb6130fbeec1323596cd2afda58ef84e7-22-terry-jones-monty-python.rvertical.w570.jpg'),
+//                width: 100,
+//                height: 100,
+//                fit: BoxFit.scaleDown,
+//              ),
+//              const Image(
+//                image: NetworkImage('https://ichef.bbci.co.uk/images/ic/480xn/p00q7zvr.jpg'),
+//                width: 100,
+//                height: 100,
+//                fit: BoxFit.scaleDown,
+//              ),
+//            ],
+//          ),
+//
+//        ),
 
-        Container(
-          height: 40, // give it a fixed height constraint
-          child:
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-
-              const Image(
-                image: NetworkImage('https://www.gstatic.com/tv/thumb/persons/1156788/1156788_v9_aa.jpg'),
-                width: 110,
-                height: 110,
-                fit: BoxFit.scaleDown,
-              ),
-              const Image(
-                image: NetworkImage('https://i.guim.co.uk/img/media/0dae2063eda63e5da1810895aff69e1ef600d0fb/0_598_4912_2946/master/4912.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=3f1a4b410e90e91203bb625f3d53efed'),
-                width: 100,
-                height: 100,
-                fit: BoxFit.scaleDown,
-              ),
-              const Image(
-                image: NetworkImage('https://pyxis.nymag.com/v1/imgs/cd5/155/ebb6130fbeec1323596cd2afda58ef84e7-22-terry-jones-monty-python.rvertical.w570.jpg'),
-                width: 100,
-                height: 100,
-                fit: BoxFit.scaleDown,
-              ),
-              const Image(
-                image: NetworkImage('https://ichef.bbci.co.uk/images/ic/480xn/p00q7zvr.jpg'),
-                width: 100,
-                height: 100,
-                fit: BoxFit.scaleDown,
-              ),
-            ],
-          ),
-
-        ),
-
-        Container(
-          height: 40, // give it a fixed height constraint
-          margin: const EdgeInsets.only(bottom: 30.0),
-          child:
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-
-              Text(
-                "John Hoarse",
-                style: TextStyle(fontSize: 10.0),
-              ),
-              Text(
-                "Roy Jeeralph",
-                style: TextStyle(fontSize: 10.0),
-              ),
-              Text(
-                "Terry Cronks",
-                style: TextStyle(fontSize: 10.0),
-              ),
-              Text(
-                "Adam Sloth",
-                style: TextStyle(fontSize: 10.0),
-              ),
-            ],
-          ),
-
-        ),
+//        Container(
+//          height: 40, // give it a fixed height constraint
+//          margin: const EdgeInsets.only(bottom: 30.0),
+//          child:
+//          Row(
+//            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//            children: [
+//
+//              Text(
+//                "John Hoarse",
+//                style: TextStyle(fontSize: 10.0),
+//              ),
+//              Text(
+//                "Roy Jeeralph",
+//                style: TextStyle(fontSize: 10.0),
+//              ),
+//              Text(
+//                "Terry Cronks",
+//                style: TextStyle(fontSize: 10.0),
+//              ),
+//              Text(
+//                "Adam Sloth",
+//                style: TextStyle(fontSize: 10.0),
+//              ),
+//            ],
+//          ),
+//
+//        ),
 
       ],
     );

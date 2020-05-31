@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:ui'; // This is to get full screen size
 import 'journal.dart';
+import 'bottomNavigationBar.dart';
 
 final TextStyle standardFont = TextStyle(fontSize: 18);
 List<Widget> entries = [];
@@ -80,7 +81,7 @@ class viewProfile extends StatelessWidget {
 
                   ),
                   Text(
-                    Journal().entriesNumber.toString(),
+                    JournalState().entriesNumber.toString(),
                     textAlign: TextAlign.center,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle( fontWeight: FontWeight.bold,
@@ -187,7 +188,8 @@ class viewProfile extends StatelessWidget {
 
             //End of Containers
           ],
-        )
+        ),
+      bottomNavigationBar: bottomNavBar(3),
 
     );
   }

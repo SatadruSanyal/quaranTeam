@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'bottomNavigationBar.dart';
 
 final TextStyle standardFont = TextStyle(fontSize: 18);
 
@@ -32,6 +33,7 @@ class InterestsView extends StatelessWidget {
       ),
       body: ListView(
         children: divided
-      )
+      ),
+      bottomNavigationBar: bottomNavBar(2),
     );
   }}

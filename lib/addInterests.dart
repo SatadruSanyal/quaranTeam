@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'viewInterests.dart';
+import 'bottomNavigationBar.dart';
 
 String categoryFocus = "";
 final int numOfCategories = 5;
@@ -39,6 +40,7 @@ class CategoriesState extends State<Categories>{
         ],
       ),
       body: _categoryColumn(),
+      bottomNavigationBar: bottomNavBar(2),
     );
   }
 
