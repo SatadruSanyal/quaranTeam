@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'journal.dart';
 
 final TextStyle standardFont = TextStyle(fontSize: 18);
 final TextStyle headerFont = TextStyle(fontSize: 24, fontWeight: FontWeight.bold);
@@ -6,9 +7,25 @@ final TextStyle headerFont = TextStyle(fontSize: 24, fontWeight: FontWeight.bold
 Widget entry;
 
 class JournalEntry extends StatelessWidget {
+
+  String eventName;
+  String description;
   String category = 'Select Category';
+
+  BuildContext thisContext;
+
+  void _updateName(String name) {
+    eventName = name;
+  }
+
+  void _updateDescription(String desc) {
+    description = desc;
+  }
+
+
   @override
   Widget build(BuildContext context) {
+    thisContext = context;
     return Scaffold(
       appBar: AppBar(
         title: Text('New Journal Entry'),
@@ -19,15 +36,16 @@ class JournalEntry extends StatelessWidget {
           children: <Widget>[
             Row(
             children: <Widget>[
-              Text('Event name:', style: standardFont),
+              Text('Event name (2pts):', style: standardFont),
               Expanded(
                 child:Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextField(
                   decoration: InputDecoration(
                       border: InputBorder.none,
-                      hintText: 'Name of Event'
+                      hintText: 'Name of Event',
                   ),
+                    onChanged: _updateName,
                   ),
                 ),
               )
@@ -35,7 +53,7 @@ class JournalEntry extends StatelessWidget {
         ),
             Row(
               children: <Widget>[
-                Text('Event Category:', style: standardFont,),
+                Text('Event Category (1pt):', style: standardFont,),
                 Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: DropdownButton<String>(
@@ -49,7 +67,7 @@ class JournalEntry extends StatelessWidget {
                     onChanged: (String newValue) {
                       category = newValue;
                     },
-                    items: <String>['Select Category','Sport', 'Technology', 'Entertainment', 'Arts', 'Health and Fitness']
+                    items: <String>['Select Category','Sport', 'Technology', 'Entertainment', 'Arts', 'Health and Fitness', 'Miscellaneous']
                     .map<DropdownMenuItem<String>>((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
@@ -71,12 +89,15 @@ class JournalEntry extends StatelessWidget {
                         hintText: 'Describe the event'
                     ),
                     maxLines: null,
+                    onChanged: _updateDescription,
                   ),
                 ),
                 )
 
               ],
             ),
+            SizedBox(height: 250,),
+//            Text('Points for this entry: ' + _genPoints().toString(), style: standardFont,),
             Expanded(
               child: Align(
                 alignment: Alignment.bottomCenter,
@@ -107,7 +128,39 @@ class JournalEntry extends StatelessWidget {
     );
   }
 
-  void saveEvent() {
-    //TODO: Add event saving functionality
+  int _genPoints() {
+    return 0;
   }
+
+  void saveEvent() {
+    addEntry(_buildEntry());
+    Route route = MaterialPageRoute(builder: (context) => Journal());
+    Navigator.pop(thisContext);
+    Navigator.pushReplacement(thisContext, route);
+  }
+
+  Widget _buildEntry() {
+    return new Entry(eventName, description, category);
+  }
+
+}
+
+class Entry extends ListTile {
+
+  String name;
+  String description;
+  String category;
+
+
+  Entry(this.name, this.description, this.category);
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      title: Text(name),
+      subtitle: Text(category),
+      onTap: null //TODO: ADD ONTAP VIEW AND EDIT ENTRY
+    );
+  }
+
 }

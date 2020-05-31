@@ -82,9 +82,11 @@ class HomePageState extends State<HomePage> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Text('Curated events', style: headerFont,),
-
-              Text('''Add suggested activites to your calendar by swiping up and remove by swiping down. For more info, hold on the activity.''',
-                maxLines: 20, style: TextStyle(fontSize: 12.0 ,fontWeight:FontWeight.bold,color: Colors.black) , )
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Text('''Add suggested activites to your calendar by swiping up and remove by swiping down. For more info, hold on the activity.''', textAlign: TextAlign.center,
+                  maxLines: 20, style: TextStyle(fontSize: 13.0 ,fontWeight:FontWeight.bold,color: Colors.black) , ),
+              )
             ],
           ),
         ),

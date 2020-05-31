@@ -3,13 +3,19 @@ import 'newJournalEntry.dart';
 import 'bottomNavigationBar.dart';
 
 final TextStyle standardFont = TextStyle(fontSize: 18);
-List<Widget> entries = [];
+final TextStyle headerFont = TextStyle(fontSize: 24, fontWeight: FontWeight.bold);
+List<Entry> entries = [];
 int num_of_entries = 0;
 
 
 class Journal extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => JournalState();
+}
+
+void addEntry(Widget entry) {
+  entries.add(entry);
+  num_of_entries++;
 }
 
 class JournalState extends State<Journal> {
@@ -29,9 +35,7 @@ class JournalState extends State<Journal> {
             )
           ],
         ),
-        body: ListView(
-          children: entries,
-        ),
+        body: _buildJournalBody(),
       bottomNavigationBar: bottomNavBar(1),
     );
   }
@@ -41,5 +45,42 @@ class JournalState extends State<Journal> {
         builder: (BuildContext context) {
           return JournalEntry();
         }));
+  }
+
+  Widget _buildJournalBody() {
+    return Column(
+      children: <Widget>[
+        Center(
+        child: Text('Add More Journal Entries for More Points!', style: standardFont),
+    ),
+        Expanded(
+          child: _buildEntries()
+        )
+      ],
+    );
+  }
+  
+  Widget _buildEntries() {
+    return ListView.builder(
+        padding: const EdgeInsets.all(16.0),
+        itemBuilder: (context, i) {
+          if (i < num_of_entries) {
+            return _buildRow(entries[i]);
+          } else {
+            return null;
+          }
+        }
+
+    );
+  }
+
+  Widget _buildRow(Entry e) {
+    return ListTile(
+      title: Text(
+        e.name,
+        style: standardFont,
+      ),
+      subtitle: Text(e.category)
+    );
   }
 }

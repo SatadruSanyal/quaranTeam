@@ -118,33 +118,6 @@ class InterestsState extends State<Interests> {
        builder: (BuildContext context) => InterestsView(_saved).build(context)));
   }
 
-//  void _pushSaved() {
-//    Navigator.of(context).push(MaterialPageRoute<void>(
-//      builder: (BuildContext context) {
-//        final Iterable<ListTile> tiles = _saved.map(
-//              (Text word) {
-//            return ListTile(
-//              title: Text(
-//                word.data,
-//                style: standardFont,
-//              ),
-//            );
-//          },
-//        );
-//        final List<Widget> divided = ListTile.divideTiles(
-//          context: context,
-//          tiles: tiles,
-//        ).toList();
-//
-//        return Scaffold(
-//          appBar: AppBar(
-//            title: Text('Your Saved Interests'),
-//          ),
-//          body: ListView(children: divided),
-//        );
-//      },
-//    ));
-//  }
   Widget _interestsColumn() {
     return Column(
       children: <Widget>[
@@ -170,20 +143,6 @@ class InterestsState extends State<Interests> {
 
     );
   }
-
-//  Widget _buildSuggestions() {
-//    return ListView.builder(
-//        padding: const EdgeInsets.all(16.0),
-//        itemBuilder: /*1*/ (context, i) {
-//          if (i.isOdd) return Divider(); /*2*/
-//
-//          final index = i ~/ 2; /*3*/
-//          if (index >= _suggestions.length) {
-//            _suggestions.addAll(generateWordPairs().take(10)); /*4*/
-//          }
-//          return _buildRow(_suggestions[index]);
-//        });
-//  }
 
   Widget _buildRow(Text word) {
     final bool alreadySaved = _saved.contains(word);
