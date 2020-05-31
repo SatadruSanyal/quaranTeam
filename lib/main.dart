@@ -6,7 +6,7 @@ import 'calendar.dart';
 
 
 
-int score = 0; //TODO: HARDOCDED SCORE - CHANGE
+int score = 0; //TODO: HARDCODED SCORE - CHANGE
 
 void main() => runApp(MyApp());
 
@@ -38,6 +38,7 @@ class HomePage extends StatefulWidget {
 class HomePageState extends State<HomePage> {
   BuildContext thisContext;
   //int _selectedIndex = 0;
+  //This integer is not required
   @override
   Widget build(BuildContext context) {
     thisContext = context;
