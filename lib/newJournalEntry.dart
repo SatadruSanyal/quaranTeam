@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'journal.dart';
+import 'package:flutter/cupertino.dart';
 
 final TextStyle standardFont = TextStyle(fontSize: 18);
 final TextStyle headerFont = TextStyle(fontSize: 24, fontWeight: FontWeight.bold);
@@ -11,6 +12,7 @@ class JournalEntry extends StatelessWidget {
   String eventName;
   String description;
   String category = 'Select Category';
+  DateTime date = DateTime(2020, 1, 1);
 
   BuildContext thisContext;
 
@@ -80,6 +82,25 @@ class JournalEntry extends StatelessWidget {
             ),
             Row(
               children: <Widget>[
+                Text('Date: ', style: standardFont),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Container(
+                    height: 50,
+                    width: 300,
+                    child: CupertinoDatePicker(
+                      mode: CupertinoDatePickerMode.date,
+                      initialDateTime: date,
+                      onDateTimeChanged: (DateTime newDateTime) {
+                        date = newDateTime;
+                      },
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              children: <Widget>[
                 Text('Today I:', style: standardFont),
                 Expanded(
                 child: Padding(
@@ -96,7 +117,7 @@ class JournalEntry extends StatelessWidget {
 
               ],
             ),
-            SizedBox(height: 250,),
+            SizedBox(height: 130,),
 //            Text('Points for this entry: ' + _genPoints().toString(), style: standardFont,),
             Expanded(
               child: Align(
@@ -129,10 +150,27 @@ class JournalEntry extends StatelessWidget {
   }
 
   int _genPoints() {
-    return 0;
+    int score = 0;
+    if (eventName != null) {
+      score +=2;
+    } else {
+      eventName = 'Anonymous Event';
+    }
+    if (category != 'Select Category') {
+      score +=1;
+    } else {
+      category = 'No Category';
+    }
+    if (description != null) {
+      score += 10;
+    } else {
+      description = '';
+    }
+    return score;
   }
 
   void saveEvent() {
+    addToScore(_genPoints());
     addEntry(_buildEntry());
     Route route = MaterialPageRoute(builder: (context) => Journal());
     Navigator.pop(thisContext);
@@ -140,7 +178,7 @@ class JournalEntry extends StatelessWidget {
   }
 
   Widget _buildEntry() {
-    return new Entry(eventName, description, category, thisContext);
+    return new Entry(eventName, description, category, thisContext, date);
   }
 
 }
@@ -150,9 +188,10 @@ class Entry extends StatelessWidget {
   String name;
   String description;
   String category;
+  DateTime date;
   BuildContext thisContext;
 
-  Entry(this.name, this.description, this.category, this.thisContext);
+  Entry(this.name, this.description, this.category, this.thisContext, DateTime date);
 
   @override
   Widget build(BuildContext context) {
@@ -171,7 +210,6 @@ class Entry extends StatelessWidget {
           Text('Category: ' + category, style: TextStyle(fontSize: 18, color: Colors.grey), textAlign: TextAlign.center,),
           Text('Today I ' + description, style: standardFont,)
         ],
-
       ),
     );
   }

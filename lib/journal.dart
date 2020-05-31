@@ -6,11 +6,20 @@ final TextStyle standardFont = TextStyle(fontSize: 18);
 final TextStyle headerFont = TextStyle(fontSize: 24, fontWeight: FontWeight.bold);
 List<Entry> entries = [];
 int num_of_entries = 0;
+int score = 0;
 
 
 class Journal extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => JournalState();
+}
+
+void addToScore(int num) {
+  score += num;
+}
+
+int getScore() {
+  return score;
 }
 
 void addEntry(Widget entry) {
@@ -88,7 +97,12 @@ class JournalState extends State<Journal> {
         e.name,
         style: standardFont,
       ),
-      subtitle: Text(e.category),
+      subtitle:
+      Row(
+        children: <Widget>[
+          Text(e.category),
+        ],
+      ),
       onTap: null //TODO: ADD VIEW ENTRY FEATURE,
     );
   }

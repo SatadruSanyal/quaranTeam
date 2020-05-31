@@ -54,12 +54,11 @@ class viewProfile extends StatelessWidget {
 
                   ),
                   Text(
-                    '3000',
+                    getScore().toString(),
                     textAlign: TextAlign.center,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle( fontWeight: FontWeight.bold,
                       fontSize: 26.0,),
-
                   ),
                 ],
               ),
