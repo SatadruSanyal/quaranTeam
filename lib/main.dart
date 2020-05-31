@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
 
 class HomePage extends StatelessWidget {
   BuildContext thisContext;
-
+  int _selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
     thisContext = context;
@@ -33,6 +33,30 @@ class HomePage extends StatelessWidget {
         title: Text('Welcome to QuaranTeam!'),
       ),
       body: _homePageBody(),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+          icon: Icon(Icons.home),
+          title: Text('Home'),
+      ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.library_books),
+            title: Text('Journal')
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.account_circle),
+            title: Text('Profile')
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.category),
+            title: Text('Interests')
+          )
+        ],
+        currentIndex: 0,
+        selectedItemColor: Colors.blueAccent,
+        unselectedItemColor: Colors.grey,
+        onTap: _onItemTapped,
+      ),
     );
   }
 
@@ -49,6 +73,10 @@ class HomePage extends StatelessWidget {
         builder: (BuildContext context) {
       return Journal();
     }));
+  }
+
+  void _goToProfile() {
+    //TODO: ADD NAVIGATION TO PROFILE
   }
 
 
@@ -74,6 +102,24 @@ class HomePage extends StatelessWidget {
         ),
       ],
     );
+  }
+
+
+
+
+  void _onItemTapped(int index) {
+    if (index == 0) {
+      return;
+    } else if (index == 1) {
+      _goToJournal();
+      return;
+    } else if (index ==1) {
+      _goToProfile();
+      return;
+    } else {
+      _goToCategories();
+      return;
+    }
   }
 
 }
